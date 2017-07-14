@@ -50,7 +50,7 @@ State.contextTypes = {
   broadcast: PropTypes.object.isRequired
 }
 
-State.contextTypes = {
+State.propTypes = {
   update: PropTypes.func,
   state: PropTypes.object
 }
