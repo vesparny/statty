@@ -1,12 +1,12 @@
 {
-  "name": "simplux",
-  "amdName": "simplux",
+  "name": "statty",
+  "amdName": "statty",
   "version": "1.0.0-alpha.1",
   "description": "setState",
-  "jsnext:main": "dist/simplux.es.js",
-  "module": "dist/simplux.es.js",
-  "main": "dist/simplux.cjs.js",
-  "umd:main": "dist/simplux.umd.js",
+  "jsnext:main": "dist/statty.es.js",
+  "module": "dist/statty.es.js",
+  "main": "dist/statty.cjs.js",
+  "umd:main": "dist/statty.umd.js",
   "scripts": {
     "precommit": "lint-staged",
     "bump": "standard-version",
@@ -18,10 +18,10 @@
     "clean": "rimraf dist",
     "rollup": "rollup -c",
     "rollup:min": "cross-env MINIFY=minify rollup -c",
-    "size": "echo \"Gzipped Size: $(cat dist/simplux.umd.min.js | gzip-size)\"",
+    "size": "echo \"Gzipped Size: $(cat dist/statty.umd.min.js | gzip-size)\"",
     "release": "npm run build && npm run bump && git push --follow-tags origin master && npm publish"
   },
-  "repository": "vesparny/simplux",
+  "repository": "vesparny/statty",
   "keywords": [
     "redux",
     "react",
@@ -29,7 +29,7 @@
     "setState",
     "mobx"
   ],
-  "homepage": "https://github.com/vesparny/simplux",
+  "homepage": "https://github.com/vesparny/statty",
   "authors": [
     "Alessandro Arnodo <alessandro@arnodo.net>"
   ],
