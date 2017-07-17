@@ -15,9 +15,11 @@ class State extends React.Component {
     this.props.state
       ? this.setState(fn)
       : this.context[CHANNEL].setState(
-          {},
-          this.context[CHANNEL].getState(),
-          fn(this.context[CHANNEL].getState())
+          Object.assign(
+            {},
+            this.context[CHANNEL].getState(),
+            fn(this.context[CHANNEL].getState())
+          )
         )
 
   notify = state => this.setState(state)
