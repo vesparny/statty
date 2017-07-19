@@ -10,10 +10,10 @@
   "scripts": {
     "precommit": "lint-staged",
     "bump": "standard-version",
-    "testonly": "jest",
+    "testonly": "jest --coverage",
     "lint": "standard",
     "format": "prettier --write --semi false '*src/*.js' && standard --fix",
-    "test": "npm-run-all lint test",
+    "test": "npm-run-all lint testonly",
     "build": "npm-run-all clean rollup rollup:min size",
     "clean": "rimraf dist",
     "rollup": "rollup -c",
@@ -48,14 +48,19 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cross-env": "^5.0.0",
+    "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
     "gzip-size-cli": "^2.0.0",
     "husky": "^0.14.3",
+    "jest": "^20.0.4",
     "lint-staged": "^4.0.1",
     "mocha": "^3.4.1",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.3.1",
     "prop-types": "^15.5.4",
-    "react": "^15.4.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
     "rimraf": "^2.5.2",
     "rollup": "^0.45.2",
     "rollup-plugin-babel": "^2.7.1",
@@ -69,7 +74,14 @@
     "brcast": "^2.0.1"
   },
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "globals": [
+      "jest",
+      "expect",
+      "it",
+      "test",
+      "describe"
+    ]
   },
   "lint-staged": {
     "*.js": [

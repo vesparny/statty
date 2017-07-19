@@ -11,16 +11,14 @@ function childrenToArray (children) {
 class State extends React.Component {
   state = this.props.state ? this.props.state : this.context[CHANNEL].getState()
 
-  update = fn =>
-    this.props.state
-      ? this.setState(fn)
-      : this.context[CHANNEL].setState(
-          Object.assign(
-            {},
-            this.context[CHANNEL].getState(),
-            fn(this.context[CHANNEL].getState())
-          )
-        )
+  update = fn => {
+    if (this.props.state) {
+      this.setState(fn)
+    } else {
+      const oldState = this.context[CHANNEL].getState()
+      this.context[CHANNEL].setState(Object.assign(oldState, fn(oldState)))
+    }
+  }
 
   notify = state => this.setState(state)
 
@@ -30,7 +28,7 @@ class State extends React.Component {
     }
   }
 
-  componentWillMount () {
+  componentWillUnmount () {
     this.unsubscribe && this.unsubscribe()
   }
 
