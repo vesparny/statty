@@ -9,8 +9,8 @@ expect.addSnapshotSerializer(serializer)
 const increment = state => ({ count: state.count + 1 })
 const getMockedContext = unsubscribe => ({
   [CHANNEL]: {
-    getState: () => {},
-    setState: () => {},
+    getState: () => ({}),
+    setState: () => ({}),
     subscribe: () => unsubscribe
   }
 })

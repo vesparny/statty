@@ -9,22 +9,36 @@ function childrenToArray (children) {
 }
 
 class State extends React.Component {
-  state = this.props.state ? this.props.state : this.context[CHANNEL].getState()
-
-  update = fn => {
-    if (this.props.state) {
-      this.setState(fn)
-    } else {
-      const oldState = this.context[CHANNEL].getState()
-      this.context[CHANNEL].setState(Object.assign(oldState, fn(oldState)))
-    }
+  static defaultProps = {
+    select: state => state
   }
 
-  notify = state => this.setState(state)
+  static contextTypes = {
+    [CHANNEL]: PropTypes.object.isRequired
+  }
+
+  static propTypes = {
+    update: PropTypes.func,
+    state: PropTypes.object
+  }
+
+  broadcast = this.context[CHANNEL]
+
+  state = this.props.state ? this.props.state : this.broadcast.getState()
+
+  update = fn =>
+    this.props.state
+      ? this.setState(fn)
+      : this.broadcast.setState(
+          Object.assign(
+            this.broadcast.getState(),
+            fn(this.broadcast.getState())
+          )
+        )
 
   componentDidMount () {
     if (!this.props.state) {
-      this.unsubscribe = this.context[CHANNEL].subscribe(this.notify)
+      this.unsubscribe = this.broadcast.subscribe(this.setState.bind(this))
     }
   }
 
@@ -39,23 +53,10 @@ class State extends React.Component {
 
     const children = childrenToArray(this.props.children)
     const mapped = this.props.select(
-      this.props.state ? this.state : this.context[CHANNEL].getState()
+      this.props.state ? this.state : this.broadcast.getState()
     )
     return children[0]({ ...mapped }, this.update)
   }
-}
-
-State.defaultProps = {
-  select: state => state
-}
-
-State.contextTypes = {
-  [CHANNEL]: PropTypes.object.isRequired
-}
-
-State.propTypes = {
-  update: PropTypes.func,
-  state: PropTypes.object
 }
 
 export default State

@@ -4,6 +4,10 @@ import brcast from 'brcast'
 import { CHANNEL } from './constants'
 
 class Provider extends React.Component {
+  static childContextTypes = {
+    [CHANNEL]: PropTypes.object
+  }
+
   broadcast = brcast(this.props.state)
 
   getChildContext () {
@@ -15,10 +19,6 @@ class Provider extends React.Component {
   render () {
     return this.props.children
   }
-}
-
-Provider.childContextTypes = {
-  [CHANNEL]: PropTypes.object
 }
 
 export default Provider
