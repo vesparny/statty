@@ -1,9 +1,8 @@
 {
   "name": "statty",
   "amdName": "statty",
-  "version": "1.0.0-alpha.9",
-  "description": "setState",
-  "jsnext:main": "dist/statty.es.js",
+  "version": "1.0.0-alpha.10",
+  "description": "A tiny and discrete state management library for (p)react apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
   "umd:main": "dist/statty.umd.js",
