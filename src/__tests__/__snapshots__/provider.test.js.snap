@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Provider passes context down 1`] = `
+<span>
+  {"state":"ok"}
+</span>
+`;

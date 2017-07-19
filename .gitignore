@@ -1,4 +1,5 @@
-/dist
-/node_modules
-/npm-debug.log
+dist
+node_modules
+npm-debug.log
 .DS_Store
+coverage
