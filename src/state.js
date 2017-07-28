@@ -2,12 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CHANNEL } from './constants'
 
-function childrenToArray (children) {
-  return Array.isArray && Array.isArray(children)
-    ? children
-    : [].concat(children)
-}
-
 class State extends React.Component {
   static defaultProps = {
     select: state => state
@@ -31,6 +25,7 @@ class State extends React.Component {
       ? this.setState(fn)
       : this.broadcast.setState(
           Object.assign(
+            {},
             this.broadcast.getState(),
             fn(this.broadcast.getState())
           )
@@ -47,15 +42,16 @@ class State extends React.Component {
   }
 
   render () {
-    if (!this.props.children) {
+    const { children } = this.props.children
+    if (!children) {
       return null
     }
 
-    const children = childrenToArray(this.props.children)
+    const c = Array.isArray(children) ? children : [].concat(children)
     const mapped = this.props.select(
       this.props.state ? this.state : this.broadcast.getState()
     )
-    return children[0]({ ...mapped }, this.update)
+    return c[0]({ ...mapped }, this.update)
   }
 }
 
