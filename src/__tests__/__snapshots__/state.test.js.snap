@@ -24,7 +24,7 @@ exports[`with count = 1 1`] = `
 <Provider
   state={
     Object {
-      "count": 1,
+      "count": 0,
     }
   }
 >

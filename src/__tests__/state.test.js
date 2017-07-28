@@ -9,14 +9,16 @@ expect.addSnapshotSerializer(serializer)
 const increment = state => ({ count: state.count + 1 })
 const getMockedContext = unsubscribe => ({
   [CHANNEL]: {
-    getState: () => ({}),
-    setState: () => ({}),
+    getState: () => {},
+    setState: () => {},
     subscribe: () => unsubscribe
   }
 })
+
 test('State updates global state', () => {
+  const state = { count: 0 }
   const wrapper = mount(
-    <Provider state={{ count: 0 }}>
+    <Provider state={state}>
       <State
         children={(state, update) =>
           <button onClick={() => update(increment)}>

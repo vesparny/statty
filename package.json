@@ -1,6 +1,6 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "A tiny and discrete state management library for (p)react apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
@@ -69,7 +69,7 @@
     "standard-version": "^4.0.0"
   },
   "dependencies": {
-    "brcast": "^2.0.1"
+    "brcast": "^2.0.2"
   },
   "standard": {
     "parser": "babel-eslint",

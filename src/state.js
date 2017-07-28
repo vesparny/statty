@@ -20,16 +20,14 @@ class State extends React.Component {
 
   state = this.props.state ? this.props.state : this.broadcast.getState()
 
-  update = fn =>
-    this.props.state
-      ? this.setState(fn)
-      : this.broadcast.setState(
-          Object.assign(
-            {},
-            this.broadcast.getState(),
-            fn(this.broadcast.getState())
-          )
-        )
+  update = fn => {
+    if (this.props.state) {
+      this.setState(fn)
+    } else {
+      const oldState = this.broadcast.getState()
+      this.broadcast.setState(Object.assign({}, oldState, fn(oldState)))
+    }
+  }
 
   componentDidMount () {
     if (!this.props.state) {
@@ -42,7 +40,7 @@ class State extends React.Component {
   }
 
   render () {
-    const { children } = this.props.children
+    const { children } = this.props
     if (!children) {
       return null
     }
