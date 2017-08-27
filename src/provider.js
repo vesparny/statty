@@ -1,9 +1,9 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import brcast from 'brcast'
 import { CHANNEL } from './constants'
 
-class Provider extends React.Component {
+class Provider extends Component {
   static childContextTypes = {
     [CHANNEL]: PropTypes.object
   }

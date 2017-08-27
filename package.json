@@ -69,7 +69,7 @@
     "standard-version": "^4.0.0"
   },
   "dependencies": {
-    "brcast": "^2.0.2"
+    "brcast": "^3.0.1"
   },
   "standard": {
     "parser": "babel-eslint",

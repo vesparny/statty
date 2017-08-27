@@ -1,8 +1,8 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { CHANNEL } from './constants'
 
-class State extends React.Component {
+class State extends Component {
   static defaultProps = {
     select: state => state
   }
@@ -13,7 +13,8 @@ class State extends React.Component {
 
   static propTypes = {
     update: PropTypes.func,
-    state: PropTypes.object
+    state: PropTypes.object,
+    render: PropTypes.func
   }
 
   broadcast = this.context[CHANNEL]
@@ -30,26 +31,20 @@ class State extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.props.state) {
-      this.unsubscribe = this.broadcast.subscribe(this.setState.bind(this))
-    }
+    if (!this.props.state) { this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this)) }
   }
 
   componentWillUnmount () {
-    this.unsubscribe && this.unsubscribe()
+    this.subscriptionId && this.broadcast.unsubscribe(this.subscriptionId)
   }
 
   render () {
-    const { children } = this.props
-    if (!children) {
-      return null
-    }
+    if (!this.props.render) return null
 
-    const c = Array.isArray(children) ? children : [].concat(children)
     const mapped = this.props.select(
       this.props.state ? this.state : this.broadcast.getState()
     )
-    return c[0]({ ...mapped }, this.update)
+    return this.props.render({ ...mapped }, this.update) || null
   }
 }
 

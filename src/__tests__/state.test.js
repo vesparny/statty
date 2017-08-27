@@ -7,11 +7,12 @@ import { CHANNEL } from '../constants'
 expect.addSnapshotSerializer(serializer)
 
 const increment = state => ({ count: state.count + 1 })
-const getMockedContext = unsubscribe => ({
+const getMockedContext = () => ({
   [CHANNEL]: {
     getState: () => {},
     setState: () => {},
-    subscribe: () => unsubscribe
+    subscribe: () => 1,
+    unsubscribe: jest.fn()
   }
 })
 
@@ -75,11 +76,10 @@ test('State returns null in case no children are provided', () => {
 })
 
 test('unsubscribes from state updates on unmount', () => {
-  const unsubscribe = jest.fn()
-  const context = getMockedContext(unsubscribe)
+  const context = getMockedContext()
   const wrapper = mount(<State children={(state, update) => <span />} />, {
     context
   })
   wrapper.unmount()
-  expect(unsubscribe).toHaveBeenCalled()
+  expect(context[CHANNEL].unsubscribe).toHaveBeenCalled()
 })
