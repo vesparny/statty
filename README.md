@@ -1,5 +1,5 @@
 # statty
-> A tiny and discrete state management library for (p)react apps
+> A tiny and discrete state management library for react and preact apps
 
 [![Travis](https://img.shields.io/travis/vesparny/statty.svg)](https://travis-ci.org/vesparny/statty)
 [![Code Coverage](https://img.shields.io/codecov/c/github/vesparny/statty.svg?style=flat-square)](https://codecov.io/github/vesparny/statty)
@@ -40,6 +40,9 @@ The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https
 You can find the library on `window.statty`.
 
 ## Usage
+
+For the moment take a look at this playground https://codesandbox.io/s/o2rq7oJ0z.
+More to come.
 
 ## Tests
 

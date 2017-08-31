@@ -8,7 +8,7 @@ exports[`with count = 0 1`] = `
     }
   }
 >
-  <State
+  <Connector
     render={[Function]}
     select={[Function]}
   >
@@ -17,7 +17,7 @@ exports[`with count = 0 1`] = `
     >
       0
     </button>
-  </State>
+  </Connector>
 </Provider>
 `;
 
@@ -29,7 +29,7 @@ exports[`with count = 1 1`] = `
     }
   }
 >
-  <State
+  <Connector
     render={[Function]}
     select={[Function]}
   >
@@ -38,7 +38,7 @@ exports[`with count = 1 1`] = `
     >
       1
     </button>
-  </State>
+  </Connector>
 </Provider>
 `;
 
@@ -50,7 +50,7 @@ exports[`with count = 10 1`] = `
     }
   }
 >
-  <State
+  <Connector
     render={[Function]}
     select={[Function]}
     state={
@@ -64,7 +64,7 @@ exports[`with count = 10 1`] = `
     >
       10
     </button>
-  </State>
+  </Connector>
 </Provider>
 `;
 
@@ -76,7 +76,7 @@ exports[`with count = 11 1`] = `
     }
   }
 >
-  <State
+  <Connector
     render={[Function]}
     select={[Function]}
     state={
@@ -90,11 +90,11 @@ exports[`with count = 11 1`] = `
     >
       11
     </button>
-  </State>
+  </Connector>
 </Provider>
 `;
 
-exports[`with no children 1`] = `
+exports[`with no render prop 1`] = `
 <Provider
   state={
     Object {
@@ -102,7 +102,7 @@ exports[`with no children 1`] = `
     }
   }
 >
-  <State
+  <Connector
     select={[Function]}
   />
 </Provider>
@@ -117,13 +117,13 @@ exports[`with selector 1`] = `
     }
   }
 >
-  <State
+  <Connector
     render={[Function]}
     select={[Function]}
   >
     <span>
       {"data":[]}
     </span>
-  </State>
+  </Connector>
 </Provider>
 `;

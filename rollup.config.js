@@ -41,9 +41,7 @@ export default {
             modules: false,
             loose: true
           }
-        ],
-        'react',
-        'stage-2'
+        ]
       ],
       plugins: ['external-helpers']
     }),

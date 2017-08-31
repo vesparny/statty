@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import serializer from 'enzyme-to-json/serializer'
-import { Provider, State } from '../index'
+import { Provider, Connector } from '../index'
 import { CHANNEL } from '../constants'
 
 expect.addSnapshotSerializer(serializer)
@@ -16,11 +16,11 @@ const getMockedContext = () => ({
   }
 })
 
-test('State updates global state', () => {
+test('Connector updates global state', () => {
   const state = { count: 0 }
   const wrapper = mount(
     <Provider state={state}>
-      <State
+      <Connector
         render={(state, update) => (
           <button onClick={() => update(increment)}>{state.count}</button>
         )}
@@ -32,10 +32,10 @@ test('State updates global state', () => {
   expect(wrapper).toMatchSnapshot(`with count = 1`)
 })
 
-test('State updates local state', () => {
+test('Connector updates local state', () => {
   const wrapper = mount(
     <Provider state={{ count: 0 }}>
-      <State
+      <Connector
         state={{ count: 10 }}
         render={(state, update) => (
           <button onClick={() => update(increment)}>{state.count}</button>
@@ -48,11 +48,11 @@ test('State updates local state', () => {
   expect(wrapper).toMatchSnapshot(`with count = 11`)
 })
 
-test('State returns a portion of the state based on a selector function', () => {
+test('Connector returns a slice of the state based on a selector function', () => {
   const selector = state => ({ data: state.data })
   const wrapper = mount(
     <Provider state={{ count: 0, data: [] }}>
-      <State
+      <Connector
         select={selector}
         render={(state, update) => <span>{JSON.stringify(state)}</span>}
       />
@@ -61,18 +61,18 @@ test('State returns a portion of the state based on a selector function', () => 
   expect(wrapper).toMatchSnapshot(`with selector`)
 })
 
-test('State returns null in case no children are provided', () => {
+test('Connector returns null in case no render prop is provided', () => {
   const wrapper = mount(
     <Provider state={{ count: 0 }}>
-      <State />
+      <Connector />
     </Provider>
   )
-  expect(wrapper).toMatchSnapshot(`with no children`)
+  expect(wrapper).toMatchSnapshot(`with no render prop`)
 })
 
 test('unsubscribes from state updates on unmount', () => {
   const context = getMockedContext()
-  const wrapper = mount(<State children={(state, update) => <span />} />, {
+  const wrapper = mount(<Connector render={(state, update) => <span />} />, {
     context
   })
   wrapper.unmount()
