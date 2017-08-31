@@ -1,9 +1,9 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "description": "A tiny and discrete state management library for (p)react apps",
-  "module": "dist/statty.es.js",
-  "main": "dist/statty.es.js",
+  "module": "dist/statty.cjs.js",
+  "main": "dist/statty.cjs.js",
   "umd:main": "dist/statty.umd.js",
   "scripts": {
     "precommit": "lint-staged",
