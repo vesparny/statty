@@ -10,10 +10,7 @@ test('Provider passes context down', () => {
     render(
       <Provider state={{ state: 'ok' }}>
         <State
-          children={(state, update) =>
-            <span>
-              {JSON.stringify(state)}
-            </span>}
+          render={(state, update) => <span>{JSON.stringify(state)}</span>}
         />
       </Provider>
     )

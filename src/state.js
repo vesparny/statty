@@ -3,25 +3,14 @@ import PropTypes from 'prop-types'
 import { CHANNEL } from './constants'
 
 class State extends Component {
-  static defaultProps = {
-    select: state => state
+  constructor (props, context) {
+    super(props, context)
+    this.broadcast = context[CHANNEL]
+    this.state = props.state ? props.state : this.broadcast.getState()
+    this.update = this.update.bind(this)
   }
 
-  static contextTypes = {
-    [CHANNEL]: PropTypes.object.isRequired
-  }
-
-  static propTypes = {
-    update: PropTypes.func,
-    state: PropTypes.object,
-    render: PropTypes.func
-  }
-
-  broadcast = this.context[CHANNEL]
-
-  state = this.props.state ? this.props.state : this.broadcast.getState()
-
-  update = fn => {
+  update (fn) {
     if (this.props.state) {
       this.setState(fn)
     } else {
@@ -31,7 +20,9 @@ class State extends Component {
   }
 
   componentDidMount () {
-    if (!this.props.state) { this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this)) }
+    if (!this.props.state) {
+      this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this))
+    }
   }
 
   componentWillUnmount () {
@@ -44,8 +35,22 @@ class State extends Component {
     const mapped = this.props.select(
       this.props.state ? this.state : this.broadcast.getState()
     )
-    return this.props.render({ ...mapped }, this.update) || null
+    return this.props.render(mapped, this.update) || null
   }
+}
+
+State.defaultProps = {
+  select: state => state
+}
+
+State.contextTypes = {
+  [CHANNEL]: PropTypes.object.isRequired
+}
+
+State.propTypes = {
+  update: PropTypes.func,
+  state: PropTypes.object,
+  render: PropTypes.func
 }
 
 export default State

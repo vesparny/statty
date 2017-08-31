@@ -21,10 +21,9 @@ test('State updates global state', () => {
   const wrapper = mount(
     <Provider state={state}>
       <State
-        children={(state, update) =>
-          <button onClick={() => update(increment)}>
-            {state.count}
-          </button>}
+        render={(state, update) => (
+          <button onClick={() => update(increment)}>{state.count}</button>
+        )}
       />
     </Provider>
   )
@@ -38,10 +37,9 @@ test('State updates local state', () => {
     <Provider state={{ count: 0 }}>
       <State
         state={{ count: 10 }}
-        children={(state, update) =>
-          <button onClick={() => update(increment)}>
-            {state.count}
-          </button>}
+        render={(state, update) => (
+          <button onClick={() => update(increment)}>{state.count}</button>
+        )}
       />
     </Provider>
   )
@@ -56,10 +54,7 @@ test('State returns a portion of the state based on a selector function', () => 
     <Provider state={{ count: 0, data: [] }}>
       <State
         select={selector}
-        children={(state, update) =>
-          <span>
-            {JSON.stringify(state)}
-          </span>}
+        render={(state, update) => <span>{JSON.stringify(state)}</span>}
       />
     </Provider>
   )

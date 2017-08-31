@@ -4,11 +4,10 @@ import brcast from 'brcast'
 import { CHANNEL } from './constants'
 
 class Provider extends Component {
-  static childContextTypes = {
-    [CHANNEL]: PropTypes.object
+  constructor (props, context) {
+    super(props, context)
+    this.broadcast = brcast(this.props.state)
   }
-
-  broadcast = brcast(this.props.state)
 
   getChildContext () {
     return {
@@ -17,8 +16,14 @@ class Provider extends Component {
   }
 
   render () {
-    return this.props.children
+    return Array.isArray(this.props.children)
+      ? this.props.children[0]
+      : this.props.children
   }
+}
+
+Provider.childContextTypes = {
+  [CHANNEL]: PropTypes.object
 }
 
 export default Provider

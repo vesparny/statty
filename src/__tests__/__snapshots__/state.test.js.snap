@@ -9,6 +9,7 @@ exports[`with count = 0 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
   >
     <button
@@ -29,6 +30,7 @@ exports[`with count = 1 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
   >
     <button
@@ -49,6 +51,7 @@ exports[`with count = 10 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
     state={
       Object {
@@ -74,6 +77,7 @@ exports[`with count = 11 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
     state={
       Object {
@@ -114,6 +118,7 @@ exports[`with selector 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
   >
     <span>

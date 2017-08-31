@@ -1,6 +1,6 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.17",
+  "version": "1.0.0-alpha.18",
   "description": "A tiny and discrete state management library for (p)react apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
@@ -17,7 +17,7 @@
     "rollup": "rollup -c",
     "rollup:min": "cross-env MINIFY=minify rollup -c",
     "size": "echo \"Gzipped Size: $(cat dist/statty.umd.min.js | gzip-size)\"",
-    "release": "npm run build && npm run bump && git push --follow-tags origin master && npm publish"
+    "release": "npm-run-all test build bump && git push --follow-tags origin master && npm publish"
   },
   "repository": "vesparny/statty",
   "keywords": [
@@ -53,7 +53,9 @@
     "lint-staged": "^4.0.1",
     "mocha": "^3.4.1",
     "npm-run-all": "^4.0.2",
-    "prettier": "^1.3.1",
+    "prettier": "^1.6.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
     "rimraf": "^2.5.2",
     "rollup": "^0.45.2",
