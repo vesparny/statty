@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha.14",
   "description": "A tiny and discrete state management library for (p)react apps",
   "module": "dist/statty.es.js",
-  "main": "dist/statty.cjs.js",
+  "main": "dist/statty.es.js",
   "umd:main": "dist/statty.umd.js",
   "scripts": {
     "precommit": "lint-staged",
