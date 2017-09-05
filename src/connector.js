@@ -1,12 +1,11 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import xtend from 'xtend'
-import { CHANNEL } from './constants'
 
 class Connector extends Component {
   constructor (props, context) {
     super(props, context)
-    this.broadcast = context[CHANNEL]
+    this.broadcast = context.__statty__
     this.gs = this.broadcast.getState
     this.state = props.state ? props.state : this.gs()
     this.update = this.update.bind(this)
@@ -19,7 +18,9 @@ class Connector extends Component {
   }
 
   componentDidMount () {
-    if (!this.props.state) { this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this)) }
+    if (!this.props.state) {
+      this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this))
+    }
   }
 
   componentWillUnmount () {
@@ -40,7 +41,7 @@ Connector.defaultProps = {
 }
 
 Connector.contextTypes = {
-  [CHANNEL]: PropTypes.object.isRequired
+  __statty__: PropTypes.object.isRequired
 }
 
 Connector.propTypes = {

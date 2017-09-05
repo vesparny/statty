@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel'
+import buble from 'rollup-plugin-buble'
 import uglify from 'rollup-plugin-uglify'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
@@ -11,14 +11,14 @@ const minify = !!process.env.MINIFY
 const pkg = require('./package.json')
 
 let targets = [
-  { dest: makeDest('cjs'), format: 'cjs' },
-  { dest: makeDest('umd'), format: 'umd', moduleName: pkg.name }
+  { file: makeDest('cjs'), format: 'cjs' },
+  { file: makeDest('umd'), format: 'umd', name: pkg.name }
 ]
 
 export default {
-  entry: 'src/index.js',
+  input: 'src/index.js',
   useStrict: false,
-  sourceMap: minify,
+  sourcemap: minify,
   external: ['react', 'prop-types'],
   globals: {
     react: 'React',
@@ -31,23 +31,10 @@ export default {
       // browser: false
     }),
     commonjs(),
-    babel({
-      exclude: 'node_modules/**',
-      babelrc: false,
-      presets: [
-        [
-          'env',
-          {
-            modules: false,
-            loose: true
-          }
-        ]
-      ],
-      plugins: ['external-helpers']
-    }),
+    buble(),
     minify ? uglify() : {}
   ],
-  targets: minify
+  output: minify
     ? targets
-    : targets.concat([{ dest: makeDest('es'), format: 'es' }])
+    : targets.concat([{ file: makeDest('es'), format: 'es' }])
 }

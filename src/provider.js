@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import brcast from 'brcast'
-import { CHANNEL } from './constants'
 
 class Provider extends Component {
   constructor (props, context) {
@@ -11,7 +10,7 @@ class Provider extends Component {
 
   getChildContext () {
     return {
-      [CHANNEL]: this.broadcast
+      __statty__: this.broadcast
     }
   }
 
@@ -22,7 +21,7 @@ class Provider extends Component {
 }
 
 Provider.childContextTypes = {
-  [CHANNEL]: PropTypes.object
+  __statty__: PropTypes.object
 }
 
 export default Provider

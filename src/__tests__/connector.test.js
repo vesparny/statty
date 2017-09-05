@@ -2,7 +2,8 @@ import React from 'react'
 import { mount } from 'enzyme'
 import serializer from 'enzyme-to-json/serializer'
 import { Provider, Connector } from '../index'
-import { CHANNEL } from '../constants'
+
+const CHANNEL = '__statty__'
 
 expect.addSnapshotSerializer(serializer)
 
