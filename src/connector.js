@@ -12,9 +12,12 @@ class Connector extends Component {
   }
 
   update (fn) {
-    this.props.state
-      ? this.setState(fn)
-      : this.broadcast.setState(xtend(this.gs(), fn(this.gs())))
+    if (this.props.state) {
+      this.setState(fn)
+    } else {
+      const oldState = this.gs()
+      this.broadcast.setState(xtend(oldState, fn(oldState)))
+    }
   }
 
   componentDidMount () {
@@ -28,11 +31,9 @@ class Connector extends Component {
   }
 
   render () {
-    const render = this.props.render
-    if (!render) return null
-
+    if (!this.props.render) return null
     const mapped = this.props.select(this.props.state ? this.state : this.gs())
-    return render(mapped, this.update) || null
+    return this.props.render(mapped, this.update) || null
   }
 }
 
