@@ -29,8 +29,8 @@ Provider.childContextTypes = {
 }
 
 Provider.propTypes = {
-  update: PropTypes.bool,
-  debug: PropTypes.object
+  debug: PropTypes.bool,
+  state: PropTypes.object
 }
 
 export default Provider
