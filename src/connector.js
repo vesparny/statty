@@ -9,6 +9,23 @@ class Connector extends Component {
     this.gs = this.broadcast.getState
     this.state = props.state ? props.state : this.gs()
     this.update = this.update.bind(this)
+    this.setState = this.setState.bind(this)
+  }
+
+  debug (oldState, newState) {
+    try {
+      console.groupCollapsed('action', 'color: #CCCCCC')
+    } catch (e) {
+      console.log('action')
+    }
+    console.log('%c old state', 'color: #FF725C', oldState)
+    console.log('%c action', 'color: #111111')
+    console.log('%c new state', 'color: #333333', newState)
+    try {
+      console.groupEnd()
+    } catch (e) {
+      console.log('== end ==')
+    }
   }
 
   update (fn) {
@@ -16,13 +33,15 @@ class Connector extends Component {
       this.setState(fn)
     } else {
       const oldState = this.gs()
-      this.broadcast.setState(xtend(oldState, fn(oldState)))
+      const newState = xtend(oldState, fn(oldState))
+      this.props.debug && this.debug(oldState, newState)
+      this.broadcast.setState(newState)
     }
   }
 
   componentDidMount () {
     if (!this.props.state) {
-      this.subscriptionId = this.broadcast.subscribe(this.setState.bind(this))
+      this.subscriptionId = this.broadcast.subscribe(this.setState)
     }
   }
 
