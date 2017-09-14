@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'enzyme'
 import serializer from 'enzyme-to-json/serializer'
-import { Provider, Connector } from '../index'
+import { Provider, State } from '../index'
 
 expect.addSnapshotSerializer(serializer)
 
@@ -9,7 +9,7 @@ test('Provider passes context down', () => {
   expect(
     render(
       <Provider state={{ state: 'ok' }}>
-        <Connector
+        <State
           render={(state, update) => <span>{JSON.stringify(state)}</span>}
         />
       </Provider>

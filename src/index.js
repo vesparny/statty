@@ -1,4 +1,4 @@
-import Connector from './connector'
+import State from './state'
 import Provider from './provider'
 
-export { Provider, Connector }
+export { Provider, State }

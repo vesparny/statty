@@ -10,7 +10,10 @@ class Provider extends Component {
 
   getChildContext () {
     return {
-      __statty__: this.broadcast
+      __statty__: {
+        broadcast: this.broadcast,
+        debug: this.props.debug
+      }
     }
   }
 
@@ -22,6 +25,11 @@ class Provider extends Component {
 
 Provider.childContextTypes = {
   __statty__: PropTypes.object
+}
+
+Provider.propTypes = {
+  update: PropTypes.bool,
+  debug: PropTypes.object
 }
 
 export default Provider
