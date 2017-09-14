@@ -5,14 +5,15 @@ import brcast from 'brcast'
 class Provider extends Component {
   constructor (props, context) {
     super(props, context)
-    this.broadcast = brcast(this.props.state)
+    this.broadcast = brcast(props.state)
+    this.debug = brcast(props.debug)
   }
 
   getChildContext () {
     return {
       __statty__: {
         broadcast: this.broadcast,
-        debug: this.props.debug
+        debug: this.debug
       }
     }
   }
