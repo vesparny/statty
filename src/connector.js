@@ -14,13 +14,13 @@ class Connector extends Component {
 
   debug (oldState, newState) {
     try {
-      console.groupCollapsed('action', 'color: #CCCCCC')
+      console.group('%c action%c name', 'color: #AAAAAA', 'color: #001B44')
     } catch (e) {
       console.log('action')
     }
     console.log('%c old state', 'color: #FF725C', oldState)
     console.log('%c action', 'color: #111111')
-    console.log('%c new state', 'color: #333333', newState)
+    console.log('%c new state', 'color: #137752', newState)
     try {
       console.groupEnd()
     } catch (e) {
