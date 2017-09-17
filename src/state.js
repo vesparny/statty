@@ -24,7 +24,9 @@ class State extends Component {
   }
 
   componentDidMount () {
-    if (!this.props.state) { this.subscriptionId = this.broadcast.subscribe(this.setState) }
+    if (!this.props.state) {
+      this.subscriptionId = this.broadcast.subscribe(this.setState)
+    }
   }
 
   componentWillUnmount () {
