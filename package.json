@@ -1,6 +1,6 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.29",
+  "version": "1.0.0-alpha.30",
   "description": "A tiny and unobtrusive state management library for React and preact apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
@@ -34,7 +34,8 @@
   "license": "MIT",
   "files": [
     "dist",
-    "src"
+    "src",
+    "inspect.js"
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
