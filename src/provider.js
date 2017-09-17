@@ -6,14 +6,13 @@ class Provider extends Component {
   constructor (props, context) {
     super(props, context)
     this.broadcast = brcast(props.state)
-    this.debug = brcast(props.debug)
   }
 
   getChildContext () {
     return {
       __statty__: {
         broadcast: this.broadcast,
-        debug: this.debug
+        inspect: this.props.inspect
       }
     }
   }
@@ -29,7 +28,7 @@ Provider.childContextTypes = {
 }
 
 Provider.propTypes = {
-  debug: PropTypes.bool,
+  inspect: PropTypes.func,
   state: PropTypes.object
 }
 

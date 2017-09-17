@@ -1,7 +1,7 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.28",
-  "description": "A tiny and discrete state management library for react and preact apps",
+  "version": "1.0.0-alpha.29",
+  "description": "A tiny and unobtrusive state management library for React and preact apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
   "umd:main": "dist/statty.umd.js",
@@ -65,8 +65,7 @@
   },
   "dependencies": {
     "brcast": "^3.0.1",
-    "prop-types": "^15.5.10",
-    "xtend": "^4.0.1"
+    "prop-types": "^15.5.10"
   },
   "peerDdependencies": {
     "react": ">=0.15"
