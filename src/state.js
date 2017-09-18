@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import xtend from 'xtend'
 
 class State extends Component {
   constructor (props, context) {
@@ -12,13 +13,13 @@ class State extends Component {
     this.setState = this.setState.bind(this)
   }
 
-  update (fn) {
+  update (updaterFn) {
     if (this.props.state) {
-      this.setState(fn)
+      this.setState(updaterFn)
     } else {
       const oldState = this.gs()
-      const newState = fn(oldState)
-      this.inspect && this.inspect(oldState, newState, fn)
+      const newState = xtend(oldState, updaterFn(oldState))
+      this.inspect && this.inspect(oldState, newState, updaterFn)
       this.broadcast.setState(newState)
     }
   }

@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with count = 0 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+    }
+  }
+>
+  <State
+    render={[Function]}
+    select={[Function]}
+  >
+    <button
+      onClick={[Function]}
+    >
+      0
+    </button>
+  </State>
+</Provider>
+`;
+
+exports[`with count = 1 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+    }
+  }
+>
+  <State
+    render={[Function]}
+    select={[Function]}
+  >
+    <button
+      onClick={[Function]}
+    >
+      1
+    </button>
+  </State>
+</Provider>
+`;
+
+exports[`with count = 10 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+    }
+  }
+>
+  <State
+    render={[Function]}
+    select={[Function]}
+    state={
+      Object {
+        "count": 10,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      10
+    </button>
+  </State>
+</Provider>
+`;
+
+exports[`with count = 11 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+    }
+  }
+>
+  <State
+    render={[Function]}
+    select={[Function]}
+    state={
+      Object {
+        "count": 10,
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      11
+    </button>
+  </State>
+</Provider>
+`;
+
+exports[`with no render prop 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+    }
+  }
+>
+  <State
+    select={[Function]}
+  />
+</Provider>
+`;
+
+exports[`with selector 1`] = `
+<Provider
+  state={
+    Object {
+      "count": 0,
+      "data": Array [],
+    }
+  }
+>
+  <State
+    render={[Function]}
+    select={[Function]}
+  >
+    <span>
+      {"data":[]}
+    </span>
+  </State>
+</Provider>
+`;

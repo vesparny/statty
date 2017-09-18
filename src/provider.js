@@ -18,8 +18,8 @@ class Provider extends Component {
   }
 
   render () {
-    const c = this.props.children
-    return Array.isArray(c) ? c[0] : c
+    const children = this.props.children
+    return Array.isArray(children) ? children[0] : children
   }
 }
 
