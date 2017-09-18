@@ -1,8 +1,8 @@
 // to be used during development only ofc
-module.exports = function inspect (oldState, newState, fn) {
+module.exports = function inspect (oldState, newState, updaterFn) {
   try {
     console.group(
-      '%c statty%c ' + fn.name || 'Anonymous updater',
+      '%c statty%c ' + (updaterFn.name || 'Anonymous updater'),
       'color: #AAAAAA',
       'color: #001B44'
     )
