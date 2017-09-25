@@ -14,7 +14,6 @@ The current size of `statty/dist/statty.umd.min.js` is:
 [![gzip size](http://img.badgesize.io/https://unpkg.com/statty/dist/statty.umd.min.js?compression=gzip&label=gzip%20size&style=flat-square)](https://unpkg.com/statty/dist/)
 
 ## Install
-
 This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
 
 ```sh
@@ -40,12 +39,10 @@ The [UMD](https://github.com/umdjs/umd) build is also available on [unpkg](https
 You can find the library on `window.statty`.
 
 ## Usage
-
 For the moment take a look at this playground https://codesandbox.io/s/o2rq7oJ0z.
 More to come.
 
 ## Tests
-
 ```sh
 $ npm run test
 ```
