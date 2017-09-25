@@ -26,9 +26,13 @@ In real world apps we often have app state, and sometimes it becomes annoying to
 
 ## This solution
 
-`Statty` is meant to be used to manage app-wide state and you can think of it as a simpliefied simplified version of Redux. 
+`Statty` is meant to be used to manage app-wide state and you can think of it as a simpliefied version of Redux. 
 
 It [safely](https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076) leverages context to expose application state to children, along with a function to update it when needed.
+
+The update function acts like Redux dispatch, but instead of an action, it take an `updater` function as a parameter that returns the new state.
+
+This way it's easy to write testable updaters and to organize them as you prefer, without having to write boilerplate.
 
 ## Table of Contents
 
@@ -162,13 +166,31 @@ Selects the slice of the state needed by the children components.
 
 ##### `render`
 
-> `function(state: object, update: function) | required
+> `function(state: object, update: function)` | required
 
-A render prop that takes the state returned by the selector and an update function.
+A render prop that takes the state returned by the `selector` and an `update` function.
 
-For the moment take a look at this playground https://codesandbox.io/s/o2rq7oJ0z.
+
+## Examples
+
+For the moment the only example available is hosted on [codesandbox](https://codesandbox.io/s/o2rq7oJ0z).
+
+It shows simple and more advanced examples with async state mutations. 
+
 More to come.
 
+If you would like to add an example, follow these steps:
+
+1) fork this [codesandbox](https://codesandbox.io/s/o2rq7oJ0z)
+2) Make sure your version (under dependencies) is the latest available version.
+3) Update the title and description
+4) Update the code for your example (add some form of documentation to explain what it is)
+5) Add the tag: statty:example
+
+## Inspiration
+
+* [Michael Jackson](https://github.com/mjackson)'s post on [render props](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)
+* [refunk](https://github.com/jxnblk/refunk/)
 ## Tests
 
 ```sh
