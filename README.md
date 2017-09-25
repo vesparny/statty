@@ -1,5 +1,5 @@
 # statty
-> A tiny and unobtrusive state management library for React and preact apps
+> A tiny and unobtrusive state management library for React and Preact apps
 
 [![Travis](https://img.shields.io/travis/vesparny/statty.svg)](https://travis-ci.org/vesparny/statty)
 [![Code Coverage](https://img.shields.io/codecov/c/github/vesparny/statty.svg?style=flat-square)](https://codecov.io/github/vesparny/statty)

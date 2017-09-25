@@ -1,7 +1,7 @@
 {
   "name": "statty",
-  "version": "1.0.0-alpha.30",
-  "description": "A tiny and unobtrusive state management library for React and preact apps",
+  "version": "1.0.0",
+  "description": "A tiny and unobtrusive state management library for React and Preact apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
   "umd:main": "dist/statty.umd.js",
@@ -12,11 +12,11 @@
     "lint": "standard",
     "format": "prettier --write --semi false '*src/*.js' && standard --fix",
     "test": "npm-run-all lint testonly",
-    "build": "npm-run-all clean rollup rollup:min size",
+    "build": "npm-run-all clean rollup rollup:min bundlesize",
     "clean": "rimraf dist",
+    "bundlesize": "bundlesize",
     "rollup": "rollup -c",
     "rollup:min": "cross-env MINIFY=minify rollup -c",
-    "size": "echo \"Gzipped Size: $(cat dist/statty.umd.min.js | gzip-size)\"",
     "release": "npm-run-all test build bump && git push --follow-tags origin master && npm publish"
   },
   "repository": "vesparny/statty",
@@ -43,13 +43,13 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "bundlesize": "^0.14.4",
     "cross-env": "^5.0.5",
     "enzyme": "^2.9.1",
-    "enzyme-to-json": "^1.6.0",
-    "gzip-size-cli": "^2.1.0",
+    "enzyme-to-json": "^2.0.0",
     "husky": "^0.14.3",
     "jest": "^21.1.0",
-    "lint-staged": "^4.2.1",
+    "lint-staged": "^4.2.2",
     "npm-run-all": "^4.1.1",
     "prettier": "^1.7.0",
     "react": "^15.6.1",
@@ -69,7 +69,7 @@
     "prop-types": "^15.5.10",
     "xtend": "^4.0.1"
   },
-  "peerDdependencies": {
+  "peerDependencies": {
     "react": ">=0.15"
   },
   "standard": {
@@ -84,9 +84,14 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write --semi false --single-quote",
+      "prettier --write",
       "standard --fix",
       "git add"
     ]
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/*min.js"
+    }
+  ]
 }
