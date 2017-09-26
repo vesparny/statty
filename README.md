@@ -216,4 +216,6 @@ If you would like to add an example, follow these steps:
 $ npm run test
 ```
 
+## LICENSE
+
 [MIT License](LICENSE.md) © [Alessandro Arnodo](https://alessandro.arnodo.net/)
