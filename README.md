@@ -16,17 +16,17 @@ The current size of `statty/dist/statty.umd.min.js` is:
 
 ## The problem
 
-Most of the time I see colleagues of mine starting React projects setting up Redux + a bunch of middlewares and store enhancers by default, regardless of the project nature.
+Most of the time, I see colleagues starting React projects setting up Redux + a bunch of middlewares and store enhancers by default, regardless of the project nature.
 
-Despite Redux is awesome, [it's not always needed](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367) and it may slow down the process of onboarding new developers, especially if they are new to React and its ecosystem (I often saw colleagues being stuck for hours trying to understand what was the proper way to submit a simple form).
+Despite Redux being awesome, [it's not always needed](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367) and it may slow down the process of onboarding new developers, especially if they are new to the React ecosystem (I have often seen colleagues being stuck for hours trying to understand what was the proper way to submit a simple form).
 
 React already comes with a built-in state management mechanism, and the way to change state is called `setState()`. Local component state is just fine in most of the cases.
 
 In real world apps we often have app state, and sometimes it becomes annoying to pass it down the entire component tree, along with callbacks to update it, via props.
 
-## This solution
+## The solution
 
-`Statty` is meant to be used to manage app-wide state and you can think of it as a simpliefied version of Redux. 
+`Statty` is meant to manage app-wide states and can be thought of as a simplified version of Redux.
 
 It [safely](https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076) leverages context to expose application state to children, along with a function to update it when needed.
 
@@ -45,7 +45,7 @@ This way it's easy to write testable updaters and to organize them as you prefer
 
 ## Installation
 
-This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
+This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Check them out if you don't have them locally installed.
 
 ```sh
 $ npm i statty
@@ -88,7 +88,7 @@ const dec = state => ({ count: state.count - 1 })
 // returns a complete new state
 const inc = state => Object.assign({}, state, {count: state.count + 1 })
 
-const Counter = () => 
+const Counter = () =>
   <State
     select={selector}
     render={(state, update) =>
@@ -117,7 +117,7 @@ The `<Provider>` component is used to share the state via context.
 The `<State>` component takes 2 props:
 
 * `select` is a function that takes the entire state, and returns only the part of it that the children will need
-* `render` is a [render prop](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) that takes the `selected state` and the `update` function as parameters, giving the user full control on what to render based on props and state.
+* `render` is a [render prop](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) that takes the `selected state` and the `update` functions as parameters, giving the user full control on what to render based on props and state.
 
 State updates happen via special `updater` functions that take the old state as a parameter and return the new state, triggering a rerender.
 
@@ -173,9 +173,9 @@ A render prop that takes the state returned by the `selector` and an `update` fu
 
 ## Examples
 
-For the moment the only example available is hosted on [codesandbox](https://codesandbox.io/s/o2rq7oJ0z).
+For the moment, the only example available is hosted on [codesandbox](https://codesandbox.io/s/o2rq7oJ0z).
 
-It shows simple and more advanced examples with async state mutations. 
+It shows simple and more advanced examples with async state mutations.
 
 More to come.
 
@@ -191,6 +191,7 @@ If you would like to add an example, follow these steps:
 
 * [Michael Jackson](https://github.com/mjackson)'s post on [render props](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)
 * [refunk](https://github.com/jxnblk/refunk/)
+
 ## Tests
 
 ```sh
