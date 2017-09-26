@@ -20,19 +20,19 @@ Most of the time, I see colleagues starting React projects setting up Redux + a 
 
 Despite Redux being awesome, [it's not always needed](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367) and it may slow down the process of onboarding new developers, especially if they are new to the React ecosystem (I have often seen colleagues being stuck for hours trying to understand what was the proper way to submit a simple form).
 
-React already comes with a built-in state management mechanism, and the way to change state is called `setState()`. Local component state is just fine in most of the cases.
+React already comes with a built-in state management mechanism, `setState()`. Local component state is just fine in most of the cases.
 
 In real world apps we often have app state, and sometimes it becomes annoying to pass it down the entire component tree, along with callbacks to update it, via props.
 
-## The solution
+## This solution
 
-`Statty` is meant to manage app-wide states and can be thought of as a simplified version of Redux.
+`Statty` is meant to manage app-wide state and can be thought of as a simplified version of Redux.
 
 It [safely](https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076) leverages context to expose application state to children, along with a function to update it when needed.
 
 The update function acts like Redux dispatch, but instead of an action, it takes an `updater` function as a parameter that returns the new state.
 
-This way it's easy to write testable updaters and to organize them as you prefer, without having to write boilerplate.
+This way it's easy to write testable updaters and to organize them as you prefer, without having to write boilerplate code.
 
 ## Table of Contents
 
@@ -72,44 +72,59 @@ You can find the library on `window.statty`.
 ## Usage
 
 ```jsx
+// https://codesandbox.io/s/rzpxx0w34
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider, State } from 'statty'
+import inspect from 'statty/inspect'
 
-// selector
+// selector is a function that returns a slice of the state
+// if not specified it defaults to f => f
 const selector = state => ({ count: state.count })
 
 // updaters
 
-// only returns the slice of the state supposed to be updated
-// new state will be shallowly merged with old state
-const dec = state => ({ count: state.count - 1 })
+// onDecrement is an updater and returns the updated slice of state
+// that will get shallowly merged with the old state
+const onDecrement = state => ({ count: state.count - 1 })
 
-// returns a complete new state
-const inc = state => Object.assign({}, state, {count: state.count + 1 })
+// onDecrement is an updater and returns a complete new state
+// it's a pure function like Redux reducers
+const onIncrement = state =>
+  Object.assign({}, state, { count: state.count + 1 })
 
-const Counter = () =>
+// Counter uses a <State> component to access the state
+// and the update function used to execute state mutations
+const Counter = () => (
   <State
     select={selector}
-    render={(state, update) =>
+    render={({ count }, update) => (
       <div>
-        <button onClick={() => update(dec)}>-</button>
-        {state.count}
-        <button onClick={() => update(inc)}>+</button>
-      </div>}
+        <span>Clicked: {count} times </span>
+        <button onClick={() => update(onIncrement)}>+</button>{' '}
+        <button onClick={() => update(onDecrement)}>-</button>{' '}
+      </div>
+    )}
   />
+)
 
 // initial state
 const initialState = {
   count: 0
 }
 
-const App = () =>
-  <Provider state={initialState}>
+// The <Provider> component is supposed to be placed at the top
+// of your application. It accepts the initial state and an inspect function
+// useful to log state mutatations during development
+// (check your dev tools to see it in action)
+const App = () => (
+  <Provider state={initialState} inspect={inspect}>
     <Counter />
   </Provider>
+)
 
 render(<App />, document.getElementById('root'))
+
 
 ```
 
@@ -117,7 +132,7 @@ The `<Provider>` component is used to share the state via context.
 The `<State>` component takes 2 props:
 
 * `select` is a function that takes the entire state, and returns only the part of it that the children will need
-* `render` is a [render prop](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) that takes the `selected state` and the `update` functions as parameters, giving the user full control on what to render based on props and state.
+* `render` is a [render prop](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) that takes the `selected state` and the `update` function as parameters, giving the user full control on what to render based on props and state.
 
 State updates happen via special `updater` functions that take the old state as a parameter and return the new state, triggering a rerender.
 
@@ -173,19 +188,21 @@ A render prop that takes the state returned by the `selector` and an `update` fu
 
 ## Examples
 
-For the moment, the only example available is hosted on [codesandbox](https://codesandbox.io/s/o2rq7oJ0z).
+Examples exist on [codesandbox.io](https://codesandbox.io/search?refinementList%5Btags%5D%5B0%5D=statty%3Aexample&page=1):
 
-It shows simple and more advanced examples with async state mutations.
-
-More to come.
+- [Counter](https://codesandbox.io/s/rzpxx0w34)
+- [Counter with reducer](https://codesandbox.io/s/jp9zj98l5w)
+- [Counter with async interactions](https://codesandbox.io/s/kxkp47o597) (uses controlled `selectedItem` API).
+- [Wikipedia searchbox with RxJS and Ramda](https://codesandbox.io/s/7wx3v8jqqq) (uses controlled `selectedItem` API).
+- [Wikipedia searchbox + Downshift integration](https://codesandbox.io/s/pymj32z5kj)
 
 If you would like to add an example, follow these steps:
 
-1) Fork this [codesandbox](https://codesandbox.io/s/o2rq7oJ0z)
+1) Fork this [codesandbox](https://codesandbox.io/s/rzpxx0w34)
 2) Make sure your version (under dependencies) is the latest available version
 3) Update the title and description
 4) Update the code for your example (add some form of documentation to explain what it is)
-5) Add the tag: statty:example
+5) Add the tag: `statty:example`
 
 ## Inspiration
 
