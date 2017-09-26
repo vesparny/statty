@@ -191,7 +191,7 @@ A render prop that takes the state returned by the `selector` and an `update` fu
 Examples exist on [codesandbox.io](https://codesandbox.io/search?refinementList%5Btags%5D%5B0%5D=statty%3Aexample&page=1):
 
 - [Counter](https://codesandbox.io/s/rzpxx0w34)
-- [Preact example without Preact compat (codepen)] (https://codepen.io/vesparny/pen/gGgyVN)
+- [Preact example without Preact compat (codepen)](https://codepen.io/vesparny/pen/gGgyVN)
 - [Counter with reducer](https://codesandbox.io/s/jp9zj98l5w)
 - [Counter with async interactions](https://codesandbox.io/s/kxkp47o597) (uses controlled `selectedItem` API).
 - [Wikipedia searchbox with RxJS and Ramda](https://codesandbox.io/s/7wx3v8jqqq) (uses controlled `selectedItem` API).
