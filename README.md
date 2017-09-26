@@ -88,7 +88,7 @@ const selector = state => ({ count: state.count })
 // that will get shallowly merged with the old state
 const onDecrement = state => ({ count: state.count - 1 })
 
-// onDecrement is an updater and returns a complete new state
+// onIncrement is an updater and returns a complete new state
 // it's a pure function like Redux reducers
 const onIncrement = state =>
   Object.assign({}, state, { count: state.count + 1 })
