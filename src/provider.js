@@ -30,7 +30,7 @@ Provider.childContextTypes = {
 Provider.propTypes = {
   inspect: PropTypes.func,
   state: PropTypes.object.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
 
 export default Provider
