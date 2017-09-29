@@ -55,7 +55,6 @@ State.contextTypes = {
 }
 
 State.propTypes = {
-  update: PropTypes.func,
   state: PropTypes.object,
   render: PropTypes.func,
   select: PropTypes.func
