@@ -67,8 +67,7 @@
   "dependencies": {
     "brcast": "^3.0.1",
     "is-shallow-equal": "^1.0.0",
-    "prop-types": "^15.5.10",
-    "xtend": "^4.0.1"
+    "prop-types": "^15.5.10"
   },
   "peerDependencies": {
     "react": ">=0.15"

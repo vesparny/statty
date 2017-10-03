@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import shallowEqual from 'is-shallow-equal'
-import xtend from 'xtend'
 
 class State extends Component {
   constructor (props, context) {
@@ -20,7 +19,7 @@ class State extends Component {
       this.setState(updaterFn)
     } else {
       const oldState = this.gs()
-      const nextState = xtend(oldState, updaterFn(oldState))
+      const nextState = updaterFn(oldState)
       this.inspect && this.inspect(oldState, nextState, updaterFn)
       this.broadcast.setState(nextState)
     }
