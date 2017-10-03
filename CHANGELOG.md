@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/vesparny/statty/compare/v2.0.0...v2.0.1) (2017-10-03)
+
+
+### Bug Fixes
+
+* if selectors returns undefined or null always rerender ([dc7b8b6](https://github.com/vesparny/statty/commit/dc7b8b6))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/vesparny/statty/compare/v1.0.0...v2.0.0) (2017-10-03)
 
