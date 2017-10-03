@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* throwwqs if updaters infoke other updaters ([67e8a26](https://github.com/vesparny/statty/commit/67e8a26))
+* throws if updaters invoke other updaters ([67e8a26](https://github.com/vesparny/statty/commit/67e8a26))
 
 
 ### Chores
