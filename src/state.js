@@ -2,6 +2,15 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import shallowEqual from 'is-shallow-equal'
 
+const isObjectNotNull = (a, b) => {
+  return (
+    typeof a === 'object' &&
+    typeof b === 'object' &&
+    typeof b &&
+    a !== null &&
+    b !== null
+  )
+}
 class State extends Component {
   constructor (props, context) {
     super(props, context)
@@ -34,7 +43,10 @@ class State extends Component {
   setStateIfNeeded (nextState) {
     const oldSelectdedState = this.props.select(this.prevState)
     const newSelectedState = this.props.select(nextState)
-    if (!shallowEqual(oldSelectdedState, newSelectedState)) {
+    if (
+      !isObjectNotNull(oldSelectdedState, newSelectedState) ||
+      !shallowEqual(oldSelectdedState, newSelectedState)
+    ) {
       this.prevState = this.gs()
       this.setState(nextState)
     }

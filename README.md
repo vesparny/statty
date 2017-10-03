@@ -195,7 +195,7 @@ Examples exist on [codesandbox.io](https://codesandbox.io/search?refinementList%
 - [Counter with async interactions](https://codesandbox.io/s/kxkp47o597)
 - [Wikipedia searchbox with RxJS and Ramda](https://codesandbox.io/s/7wx3v8jqqq)
 - [Wikipedia searchbox + Downshift integration](https://codesandbox.io/s/pymj32z5kj)
-- [tree-view example](https://codesandbox.io/s/3y146z2qop) (shows how to get good performance with nested subscriptions).
+- [Tree-view example](https://codesandbox.io/s/3y146z2qop) (shows how to get good performance with nested subscriptions).
 
 If you would like to add an example, follow these steps:
 
