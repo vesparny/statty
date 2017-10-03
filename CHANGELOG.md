@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/vesparny/statty/compare/v1.0.0...v2.0.0) (2017-10-03)
+
+
+### Bug Fixes
+
+* throwwqs if updaters infoke other updaters ([67e8a26](https://github.com/vesparny/statty/commit/67e8a26))
+
+
+### Chores
+
+* do not use xtend anymore ([08085de](https://github.com/vesparny/statty/commit/08085de))
+
+
+### Performance Improvements
+
+* improve performance with nested subscription by re-rendering only if necessary ([3e473fa](https://github.com/vesparny/statty/commit/3e473fa))
+
+
+### BREAKING CHANGES
+
+* updaters MUST return a complete new state, without
+mutating the old one
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2017-09-25)
 

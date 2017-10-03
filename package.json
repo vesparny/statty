@@ -1,6 +1,6 @@
 {
   "name": "statty",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A tiny and unobtrusive state management library for React and Preact apps",
   "module": "dist/statty.es.js",
   "main": "dist/statty.cjs.js",
