@@ -4,21 +4,17 @@ import shallowEqual from 'is-shallow-equal'
 
 const isObjectNotNull = (a, b) => {
   return (
-    typeof a === 'object' &&
-    typeof b === 'object' &&
-    typeof b &&
-    a !== null &&
-    b !== null
+    typeof a === 'object' && typeof b === 'object' && a !== null && b !== null
   )
 }
+
 class State extends Component {
   constructor (props, context) {
     super(props, context)
     this.broadcast = context.__statty__.broadcast
     this.inspect = context.__statty__.inspect
-    this.gs = this.broadcast.getState
-    this.prevState = this.gs()
-    this.state = props.state ? props.state : this.gs()
+    this.prevState = this.broadcast.getState()
+    this.state = props.state ? props.state : this.broadcast.getState()
     this.update = this.update.bind(this)
     this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
     this.isUpdating = false
@@ -32,7 +28,7 @@ class State extends Component {
         throw new Error('Updaters may not invoke update function.')
       }
       this.isUpdating = true
-      const oldState = this.gs()
+      const oldState = this.broadcast.getState()
       const nextState = updaterFn(oldState)
       this.inspect && this.inspect(oldState, nextState, updaterFn)
       this.broadcast.setState(nextState)
@@ -47,7 +43,7 @@ class State extends Component {
       !isObjectNotNull(oldSelectdedState, newSelectedState) ||
       !shallowEqual(oldSelectdedState, newSelectedState)
     ) {
-      this.prevState = this.gs()
+      this.prevState = this.broadcast.getState()
       this.setState(nextState)
     }
   }
@@ -67,7 +63,7 @@ class State extends Component {
     if (!props.render) return null
     return (
       props.render(
-        props.select(props.state ? this.state : this.gs()),
+        props.select(props.state ? this.state : this.broadcast.getState()),
         this.update
       ) || null
     )
