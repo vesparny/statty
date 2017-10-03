@@ -12,16 +12,22 @@ class State extends Component {
     this.state = props.state ? props.state : this.gs()
     this.update = this.update.bind(this)
     this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
+    this.isUpdating = false
   }
 
   update (updaterFn) {
     if (this.props.state) {
       this.setState(updaterFn)
     } else {
+      if (this.isUpdating) {
+        throw new Error('Updaters may not invoke update function.')
+      }
+      this.isUpdating = true
       const oldState = this.gs()
       const nextState = updaterFn(oldState)
       this.inspect && this.inspect(oldState, nextState, updaterFn)
       this.broadcast.setState(nextState)
+      this.isUpdating = false
     }
   }
 
