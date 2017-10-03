@@ -26,7 +26,7 @@ In real world apps we often have app state, and sometimes it becomes annoying to
 
 ## This solution
 
-`Statty` is meant to manage app-wide state and can be thought of as a simplified version of Redux.
+`statty` is meant to manage app-wide state and can be thought of as a simplified version of Redux.
 
 It [safely](https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076) leverages context to expose application state to children, along with a function to update it when needed.
 
@@ -84,12 +84,11 @@ const selector = state => ({ count: state.count })
 
 // updaters
 
-// onDecrement is an updater and returns the updated slice of state
-// that will get shallowly merged with the old state
-const onDecrement = state => ({ count: state.count - 1 })
+// updaters MUST be pure and return a complete new state,
+// like Redux reducers
+const onDecrement = state => 
+  Object.assign({}, state, { count: state.count - 1 })
 
-// onIncrement is an updater and returns a complete new state
-// it's a pure function like Redux reducers
 const onIncrement = state =>
   Object.assign({}, state, { count: state.count + 1 })
 
@@ -158,7 +157,7 @@ The initial state
 
 Use the inspect prop during development to track state changes.
 
-`Statty` comes with a default logger inspired by redux-logger.
+`statty` comes with a default logger inspired by redux-logger.
 
 ```jsx
 <Provider
@@ -193,9 +192,10 @@ Examples exist on [codesandbox.io](https://codesandbox.io/search?refinementList%
 - [Counter](https://codesandbox.io/s/rzpxx0w34)
 - [Preact example without Preact compat (codepen)](https://codepen.io/vesparny/pen/gGgyVN)
 - [Counter with reducer](https://codesandbox.io/s/jp9zj98l5w)
-- [Counter with async interactions](https://codesandbox.io/s/kxkp47o597) (uses controlled `selectedItem` API).
-- [Wikipedia searchbox with RxJS and Ramda](https://codesandbox.io/s/7wx3v8jqqq) (uses controlled `selectedItem` API).
+- [Counter with async interactions](https://codesandbox.io/s/kxkp47o597)
+- [Wikipedia searchbox with RxJS and Ramda](https://codesandbox.io/s/7wx3v8jqqq)
 - [Wikipedia searchbox + Downshift integration](https://codesandbox.io/s/pymj32z5kj)
+- [tree-view example](https://codesandbox.io/s/3y146z2qop) (shows how to get good performance with nested subscriptions).
 
 If you would like to add an example, follow these steps:
 

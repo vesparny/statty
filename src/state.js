@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import xtend from 'xtend'
+import shallowEqual from 'is-shallow-equal'
 
 class State extends Component {
   constructor (props, context) {
@@ -8,25 +8,41 @@ class State extends Component {
     this.broadcast = context.__statty__.broadcast
     this.inspect = context.__statty__.inspect
     this.gs = this.broadcast.getState
+    this.prevState = this.gs()
     this.state = props.state ? props.state : this.gs()
     this.update = this.update.bind(this)
-    this.setState = this.setState.bind(this)
+    this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
+    this.isUpdating = false
   }
 
   update (updaterFn) {
     if (this.props.state) {
       this.setState(updaterFn)
     } else {
+      if (this.isUpdating) {
+        throw new Error('Updaters may not invoke update function.')
+      }
+      this.isUpdating = true
       const oldState = this.gs()
-      const newState = xtend(oldState, updaterFn(oldState))
-      this.inspect && this.inspect(oldState, newState, updaterFn)
-      this.broadcast.setState(newState)
+      const nextState = updaterFn(oldState)
+      this.inspect && this.inspect(oldState, nextState, updaterFn)
+      this.broadcast.setState(nextState)
+      this.isUpdating = false
+    }
+  }
+
+  setStateIfNeeded (nextState) {
+    const oldSelectdedState = this.props.select(this.prevState)
+    const newSelectedState = this.props.select(nextState)
+    if (!shallowEqual(oldSelectdedState, newSelectedState)) {
+      this.prevState = this.gs()
+      this.setState(nextState)
     }
   }
 
   componentDidMount () {
     if (!this.props.state) {
-      this.subscriptionId = this.broadcast.subscribe(this.setState)
+      this.subscriptionId = this.broadcast.subscribe(this.setStateIfNeeded)
     }
   }
 
