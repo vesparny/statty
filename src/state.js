@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import shallowEqual from 'is-shallow-equal'
 import xtend from 'xtend'
 
 class State extends Component {
@@ -8,9 +9,10 @@ class State extends Component {
     this.broadcast = context.__statty__.broadcast
     this.inspect = context.__statty__.inspect
     this.gs = this.broadcast.getState
+    this.prevState = this.gs()
     this.state = props.state ? props.state : this.gs()
     this.update = this.update.bind(this)
-    this.setState = this.setState.bind(this)
+    this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
   }
 
   update (updaterFn) {
@@ -18,15 +20,24 @@ class State extends Component {
       this.setState(updaterFn)
     } else {
       const oldState = this.gs()
-      const newState = xtend(oldState, updaterFn(oldState))
-      this.inspect && this.inspect(oldState, newState, updaterFn)
-      this.broadcast.setState(newState)
+      const nextState = xtend(oldState, updaterFn(oldState))
+      this.inspect && this.inspect(oldState, nextState, updaterFn)
+      this.broadcast.setState(nextState)
+    }
+  }
+
+  setStateIfNeeded (nextState) {
+    const oldSelectdedState = this.props.select(this.prevState)
+    const newSelectedState = this.props.select(nextState)
+    if (!shallowEqual(oldSelectdedState, newSelectedState)) {
+      this.prevState = this.gs()
+      this.setState(nextState)
     }
   }
 
   componentDidMount () {
     if (!this.props.state) {
-      this.subscriptionId = this.broadcast.subscribe(this.setState)
+      this.subscriptionId = this.broadcast.subscribe(this.setStateIfNeeded)
     }
   }
 
