@@ -103,6 +103,7 @@ exports[`with no render prop 1`] = `
   }
 >
   <State
+    render={[Function]}
     select={[Function]}
   />
 </Provider>
