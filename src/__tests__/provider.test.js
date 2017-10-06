@@ -1,8 +1,10 @@
 import React from 'react'
-import { render } from 'enzyme'
+import Enzyme, { render } from 'enzyme'
 import serializer from 'enzyme-to-json/serializer'
 import { Provider, State } from '../index'
+import Adapter from 'enzyme-adapter-react-16'
 
+Enzyme.configure({ adapter: new Adapter() })
 expect.addSnapshotSerializer(serializer)
 
 test('Provider passes context down', () => {
