@@ -59,11 +59,11 @@ class State extends Component {
   }
 
   render () {
-    const props = this.props
-    if (!props.render) return null
     return (
-      props.render(
-        props.select(props.state ? this.state : this.broadcast.getState()),
+      this.props.render(
+        this.props.select(
+          this.props.state ? this.state : this.broadcast.getState()
+        ),
         this.update
       ) || null
     )
@@ -71,7 +71,8 @@ class State extends Component {
 }
 
 State.defaultProps = {
-  select: s => s
+  select: s => s,
+  render: () => null
 }
 
 State.contextTypes = {
