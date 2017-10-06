@@ -1,7 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import Enzyme, { mount } from 'enzyme'
 import serializer from 'enzyme-to-json/serializer'
 import { Provider, State } from '../index'
+import Adapter from 'enzyme-adapter-react-16'
+
+Enzyme.configure({ adapter: new Adapter() })
 
 const CHANNEL = '__statty__'
 
