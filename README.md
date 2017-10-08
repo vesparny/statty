@@ -2,6 +2,10 @@
 
 > A tiny and unobtrusive state management library for React and Preact apps
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/aF8QWaPs78PSySxWPHXXNThZ/vesparny/statty'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/aF8QWaPs78PSySxWPHXXNThZ/vesparny/statty.svg' />
+</a>
+
 [![Travis](https://img.shields.io/travis/vesparny/statty.svg)](https://travis-ci.org/vesparny/statty)
 [![Code Coverage](https://img.shields.io/codecov/c/github/vesparny/statty.svg?style=flat-square)](https://codecov.io/github/vesparny/statty)
 [![David](https://img.shields.io/david/vesparny/statty.svg)](https://david-dm.org/vesparny/statty)
