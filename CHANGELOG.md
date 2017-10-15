@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/vesparny/statty/compare/v2.0.2...v2.0.3) (2017-10-15)
+
+
+### Bug Fixes
+
+* setState when needed in case children update state in cWM/cDM closes #15 (#16) ([5ebe2c2](https://github.com/vesparny/statty/commit/5ebe2c2)), closes [#15](https://github.com/vesparny/statty/issues/15) [#16](https://github.com/vesparny/statty/issues/16)
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/vesparny/statty/compare/v2.0.1...v2.0.2) (2017-10-03)
 
