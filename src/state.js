@@ -52,7 +52,7 @@ class State extends Component {
     if (!this.props.state) {
       this.subscriptionId = this.broadcast.subscribe(this.setStateIfNeeded)
       // To handle the case where a child component may have triggered a state change in
-      //  its cWM/cDM, we have to re-run the selector and maybe  re-render.
+      // its cWM/cDM, we have to re-run the selector and maybe  re-render.
       this.setStateIfNeeded(this.broadcast.getState())
     }
   }
