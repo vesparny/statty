@@ -13,7 +13,9 @@ class State extends Component {
     super(props, context)
     this.broadcast = context.__statty__.broadcast
     this.inspect = context.__statty__.inspect
-    this.state = props.state ? props.state : this.broadcast.getState()
+    this.state = props.state
+      ? props.state
+      : props.select(this.broadcast.getState())
     this.update = this.update.bind(this)
     this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
     this.isUpdating = false
