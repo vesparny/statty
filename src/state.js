@@ -13,8 +13,9 @@ class State extends Component {
     super(props, context)
     this.broadcast = context.__statty__.broadcast
     this.inspect = context.__statty__.inspect
-    this.prevState = this.broadcast.getState()
-    this.state = props.state ? props.state : this.broadcast.getState()
+    this.state = props.state
+      ? props.state
+      : props.select(this.broadcast.getState())
     this.update = this.update.bind(this)
     this.setStateIfNeeded = this.setStateIfNeeded.bind(this)
     this.isUpdating = false
@@ -37,14 +38,13 @@ class State extends Component {
   }
 
   setStateIfNeeded (nextState) {
-    const oldSelectdedState = this.props.select(this.prevState)
+    const oldSelectdedState = this.state
     const newSelectedState = this.props.select(nextState)
     if (
       !isObjectNotNull(oldSelectdedState, newSelectedState) ||
       !shallowEqual(oldSelectdedState, newSelectedState)
     ) {
-      this.prevState = this.broadcast.getState()
-      this.setState(nextState)
+      this.setState(newSelectedState)
     }
   }
 
