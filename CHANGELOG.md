@@ -10,7 +10,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * Improved memory usage for state management ([#18](https://github.com/vesparny/statty/issues/18)) ([50fd5d7](https://github.com/vesparny/statty/commit/50fd5d7))
 * not throwing errors when multiple updates happen ([ea9a92b](https://github.com/vesparny/statty/commit/ea9a92b))
-* setState when needed in case children update state in cWM/cDM closes [#15](https://github.com/vesparny/statty/issues/15) ([#16](https://github.com/vesparny/statty/issues/16)) ([5ebe2c2](https://github.com/vesparny/statty/commit/5ebe2c2))
 
 
 
